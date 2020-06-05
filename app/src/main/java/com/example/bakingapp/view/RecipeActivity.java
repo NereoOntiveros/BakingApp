@@ -3,6 +3,7 @@ package com.example.bakingapp.view;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -27,6 +28,7 @@ public class RecipeActivity extends AppCompatActivity implements StepListAdapter
     RecyclerView mStepsListRV;
     private Recipe mRecipe;
     private StepListAdapter mStepsAdapter;
+    private boolean mTwoPane = false;
 
 
     @Override
@@ -40,10 +42,20 @@ public class RecipeActivity extends AppCompatActivity implements StepListAdapter
             if(intentThatStartedThisActivity.hasExtra("parcel_data")){
                 mRecipe =getIntent().getParcelableExtra("parcel_data");
 
+                if(findViewById(R.id.detail_container)!=null){
+                    mTwoPane=true;
+                }
+
                 setUpRecyclerView();
                 loadSteps(mRecipe.getSteps());
+
+
+
+
             }
         }
+
+
 
     }
 
@@ -61,10 +73,23 @@ public class RecipeActivity extends AppCompatActivity implements StepListAdapter
 
     @Override
     public void onClick(RecipeStep selectedStep) {
-        Context context = this;
-        Class destinationClass = DetailActivity.class;
-        Intent intentToStartRecipeActivity = new Intent(context,destinationClass);
-        intentToStartRecipeActivity.putExtra("parcel_data",selectedStep);
-        startActivity(intentToStartRecipeActivity);
+
+        if(mTwoPane){
+            DetailFragment fragment = DetailFragment.newInstance();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.detail_container,fragment)
+                    .addToBackStack(null)
+                    .commit();
+
+        }else {
+            Context context = this;
+            Class destinationClass = DetailActivity.class;
+            Intent intentToStartRecipeActivity = new Intent(context,destinationClass);
+            intentToStartRecipeActivity.putExtra("parcel_data",selectedStep);
+            startActivity(intentToStartRecipeActivity);
+        }
+
+
+
     }
 }

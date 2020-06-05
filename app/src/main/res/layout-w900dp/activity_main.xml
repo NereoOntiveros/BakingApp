@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout android:id="@+id/tablet_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+    </FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_recipes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+    <TextView
+        android:id="@+id/tv_error_connection_display"
+        android:text="@string/error_connection"
+        style="@style/error" />
+    <TextView
+        android:id="@+id/tv_error_message_display"
+        android:text="@string/error_message"
+        style="@style/error"
+        />
+    <ProgressBar
+        android:id="@+id/pb_loading_indicator"
+        style="@style/progress_bar"
+        />
+
+
+
+
+</merge>

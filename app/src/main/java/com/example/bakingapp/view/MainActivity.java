@@ -1,6 +1,7 @@
 package com.example.bakingapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -64,7 +65,12 @@ public class MainActivity extends AppCompatActivity implements RecipeListAdapter
     private void setUpRecyclerView(){
         mRecipesAdapter = new RecipeListAdapter(this);
         mRecyclerview.setAdapter(mRecipesAdapter);
-        mRecyclerview.setLayoutManager(new LinearLayoutManager(this));
+
+        if(findViewById(R.id.tablet_layout)==null){
+            mRecyclerview.setLayoutManager(new LinearLayoutManager(this));
+        }else {
+            mRecyclerview.setLayoutManager(new GridLayoutManager(this,2));
+        }
         mRecyclerview.setHasFixedSize(true);
 
 
