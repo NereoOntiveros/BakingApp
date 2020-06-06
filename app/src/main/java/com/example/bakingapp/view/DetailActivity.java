@@ -1,13 +1,10 @@
 package com.example.bakingapp.view;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Toast;
-
 import com.example.bakingapp.R;
-import com.example.bakingapp.model.RecipeStep;
 
 
 /**

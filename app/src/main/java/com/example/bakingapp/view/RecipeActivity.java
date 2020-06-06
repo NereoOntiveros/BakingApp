@@ -49,9 +49,6 @@ public class RecipeActivity extends AppCompatActivity implements StepListAdapter
                 setUpRecyclerView();
                 loadSteps(mRecipe.getSteps());
 
-
-
-
             }
         }
 
@@ -75,7 +72,7 @@ public class RecipeActivity extends AppCompatActivity implements StepListAdapter
     public void onClick(RecipeStep selectedStep) {
 
         if(mTwoPane){
-            DetailFragment fragment = DetailFragment.newInstance();
+            DetailFragment fragment = DetailFragment.newInstance(selectedStep);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.detail_container,fragment)
                     .addToBackStack(null)
