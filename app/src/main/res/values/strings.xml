@@ -4,4 +4,8 @@
     <string name="error_message">There is no internet connection. Please try again.</string>
     <string name="recipe_ingredients">Recipe Ingredients</string>
     <string name="no_video">(No video available.)</string>
+    <string name="ingredient_name">Ingredient: </string>
+    <string name="ingredient_measure">Measure: </string>
+    <string name="ingredient_quantity">Quantity: </string>
+
 </resources>

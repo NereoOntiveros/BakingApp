@@ -30,30 +30,11 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         mClickHandler = clickHandler;
     }
 
-    public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
-        @BindView(R.id.recipename_tv)
-        TextView recipeItemView;
-
-        public RecipeViewHolder(View itemView){
-            super(itemView);
-            ButterKnife.bind(this,itemView);
-            itemView.setOnClickListener(this);
-
-        }
-
-        @Override
-        public void onClick(View v) {
-            int adapterPosition = getAdapterPosition();
-            Recipe selectedRecipe = recipesData.get(adapterPosition);
-            mClickHandler.onClick(selectedRecipe);
-        }
-    }
-
 
     @NonNull
     @Override
     public RecipeListAdapter.RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        //Inflates the view and pass it to the viewholder to create it. Then returns it.
         Context context= parent.getContext();
         int layoutIdForListItem = R.layout.recipelist_item;
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -82,6 +63,26 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     public void setRecipesData(ArrayList<Recipe> recipesData){
         this.recipesData=recipesData;
         notifyDataSetChanged();
+    }
+
+    public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+        @BindView(R.id.recipename_tv)
+        TextView recipeItemView;
+
+        public RecipeViewHolder(View itemView){
+            super(itemView);
+            ButterKnife.bind(this,itemView);
+            itemView.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            int adapterPosition = getAdapterPosition();
+            Recipe selectedRecipe = recipesData.get(adapterPosition);
+            mClickHandler.onClick(selectedRecipe);
+        }
     }
 
 }

@@ -3,8 +3,6 @@ package com.example.bakingapp.view;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,8 +20,7 @@ import butterknife.ButterKnife;
 
 public class RecipeActivity extends AppCompatActivity implements StepListAdapter.StepAdapterOnClickHandler {
 
-    //@BindView(R.id.tv_ingredients)
-    //TextView mIngredients;
+
     @BindView(R.id.rv_steps)
     RecyclerView mStepsListRV;
     private Recipe mRecipe;
@@ -71,20 +68,40 @@ public class RecipeActivity extends AppCompatActivity implements StepListAdapter
     @Override
     public void onClick(RecipeStep selectedStep) {
 
-        if(mTwoPane){
-            DetailFragment fragment = DetailFragment.newInstance(selectedStep);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.detail_container,fragment)
-                    .addToBackStack(null)
-                    .commit();
+        if(selectedStep.getId()!=null){
+            if(mTwoPane){
+                DetailStepFragment fragment = DetailStepFragment.newInstance( selectedStep);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.detail_container,fragment)
+                        .addToBackStack(null)
+                        .commit();
 
+            }else {
+                Context context = this;
+                Class destinationClass = DetailStepActivity.class;
+                Intent intentToStartRecipeActivity = new Intent(context,destinationClass);
+                intentToStartRecipeActivity.putExtra("parcel_data",selectedStep);
+                startActivity(intentToStartRecipeActivity);
+            }
         }else {
-            Context context = this;
-            Class destinationClass = DetailActivity.class;
-            Intent intentToStartRecipeActivity = new Intent(context,destinationClass);
-            intentToStartRecipeActivity.putExtra("parcel_data",selectedStep);
-            startActivity(intentToStartRecipeActivity);
+            if(mTwoPane){
+                IngredientsListFragment fragment = IngredientsListFragment.newInstance(mRecipe);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.detail_container,fragment)
+                        .addToBackStack(null)
+                        .commit();
+            }else {
+                Context context = this;
+                Class destinationClass = IngredientsListActivity.class;
+                Intent intentToStartIngredientsListActivity = new Intent(context,destinationClass);
+                intentToStartIngredientsListActivity.putExtra("parcel_data",mRecipe);
+                startActivity(intentToStartIngredientsListActivity);
+
+            }
         }
+
+
+
 
 
 

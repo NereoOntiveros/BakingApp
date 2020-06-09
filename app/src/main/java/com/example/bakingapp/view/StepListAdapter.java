@@ -1,6 +1,7 @@
 package com.example.bakingapp.view;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bakingapp.R;
+import com.example.bakingapp.model.Ingredient;
 import com.example.bakingapp.model.RecipeStep;
 
 import java.util.ArrayList;
@@ -30,27 +32,6 @@ public class StepListAdapter extends RecyclerView.Adapter<StepListAdapter.StepVi
         void onClick(RecipeStep selectedStep);
     }
 
-
-    public class StepViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-        @BindView(R.id.tv_step_name)
-        TextView stepItemView;
-
-        public StepViewHolder(View itemView){
-            super(itemView);
-            ButterKnife.bind(this,itemView);
-            itemView.setOnClickListener(this);
-        }
-
-
-        @Override
-        public void onClick(View v) {
-            int adapterPosition = getAdapterPosition();
-            RecipeStep selectedStep = stepsData.get(adapterPosition);
-            mClickHandler.onClick(selectedStep);
-        }
-    }
-
     @NonNull
     @Override
     public StepListAdapter.StepViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -63,10 +44,11 @@ public class StepListAdapter extends RecyclerView.Adapter<StepListAdapter.StepVi
 
     @Override
     public void onBindViewHolder(@NonNull StepListAdapter.StepViewHolder holder, int position) {
+
         if (position == 0) {
-            holder.stepItemView.setText("Recipe Ingredients");
+            holder.stepItemView.setText(R.string.recipe_ingredients);
         } else {
-            RecipeStep aStep = stepsData.get(position - 1);
+            RecipeStep aStep = stepsData.get(position -1);
             holder.stepItemView.setText(aStep.getShortDescription());
         }
 
@@ -77,6 +59,7 @@ public class StepListAdapter extends RecyclerView.Adapter<StepListAdapter.StepVi
 
         if (stepsData==null)
             return 0;
+
         return stepsData.size() + 1;
 
     }
@@ -85,4 +68,37 @@ public class StepListAdapter extends RecyclerView.Adapter<StepListAdapter.StepVi
         this.stepsData = stepsData;
         notifyDataSetChanged();
     }
+
+
+
+
+
+    public class StepViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        @BindView(R.id.tv_step_name)
+        TextView stepItemView;
+
+        public StepViewHolder(View itemView){
+            super(itemView);
+            ButterKnife.bind(this,itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int adapterPosition = getAdapterPosition();
+            RecipeStep selectedStep = new RecipeStep();
+            if(adapterPosition-1>=0){
+                selectedStep = stepsData.get(adapterPosition-1);
+
+            }
+            mClickHandler.onClick(selectedStep);
+
+
+        }
+
+    }
+
+
+
 }

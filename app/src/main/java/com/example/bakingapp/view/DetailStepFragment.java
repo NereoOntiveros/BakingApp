@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,19 +21,17 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
-import java.nio.BufferUnderflowException;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link DetailFragment#newInstance} factory method to
+ * Use the {@link DetailStepFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DetailFragment extends Fragment {
+public class DetailStepFragment extends Fragment {
 
-    public RecipeStep selectedStep;
+    private RecipeStep selectedStep;
     @BindView(R.id.exoplayer)
     PlayerView mPlayerView;
     @BindView(R.id.step_instruction_tv)
@@ -44,7 +41,7 @@ public class DetailFragment extends Fragment {
     private SimpleExoPlayer mPlayer;
     private long mCurrentPosition;
 
-    public DetailFragment() {
+    public DetailStepFragment() {
         // Required empty public constructor
     }
 
@@ -53,13 +50,13 @@ public class DetailFragment extends Fragment {
      * this fragment using the provided parameters.
      *
      *
-     * @return A new instance of fragment DetailFragment.
+     * @return A new instance of fragment DetailStepFragment.
      */
 
 
-    public static DetailFragment newInstance(RecipeStep aSelectedStep){
+    public static DetailStepFragment newInstance(RecipeStep aSelectedStep){
 
-        DetailFragment fragment = new DetailFragment();
+        DetailStepFragment fragment = new DetailStepFragment();
 
         //set the bundle arguments for the fragment
         Bundle arguments = new Bundle();
@@ -86,7 +83,7 @@ public class DetailFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_step_detail, container, false);
 
         ButterKnife.bind(this,rootView);
 
