@@ -1,28 +1,26 @@
 package com.example.bakingapp.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bakingapp.R;
 import com.example.bakingapp.model.Recipe;
 import com.example.bakingapp.utils.JsonUtils;
 import com.example.bakingapp.utils.NetworkUtils;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.IOException;
@@ -43,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements RecipeListAdapter
     TextView mErrorDisplay;
     @BindView(R.id.pb_loading_indicator)
     ProgressBar mLoadingIndicator;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
     private RecipeListAdapter mRecipesAdapter;
 
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements RecipeListAdapter
             showNetworkConnectionErrorMessage();
         }
 
+        setSupportActionBar(mToolbar);
 
     }
 

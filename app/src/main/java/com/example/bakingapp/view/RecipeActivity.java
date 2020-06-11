@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +24,8 @@ public class RecipeActivity extends AppCompatActivity implements StepListAdapter
 
     @BindView(R.id.rv_steps)
     RecyclerView mStepsListRV;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
     private Recipe mRecipe;
     private StepListAdapter mStepsAdapter;
     private boolean mTwoPane = false;
@@ -34,11 +37,14 @@ public class RecipeActivity extends AppCompatActivity implements StepListAdapter
         setContentView(R.layout.recipe_activity);
         ButterKnife.bind(this);
         Intent intentThatStartedThisActivity = getIntent();
+        setSupportActionBar(mToolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if(intentThatStartedThisActivity!=null){
             if(intentThatStartedThisActivity.hasExtra("parcel_data")){
                 mRecipe =getIntent().getParcelableExtra("parcel_data");
-
+                getSupportActionBar().setTitle(mRecipe.getName());
                 if(findViewById(R.id.detail_container)!=null){
                     mTwoPane=true;
                 }
