@@ -1,5 +1,7 @@
 package com.example.bakingapp.view;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -107,7 +109,12 @@ public class MainActivity extends AppCompatActivity implements RecipeListAdapter
         mErrorConnection.setVisibility(View.VISIBLE);
     }
 
-
+    private void sendBroadCastRecipe(Context context, Recipe selectedRecipe){
+        Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        intent.setComponent(new ComponentName(context,BakingAppWidget.class));
+        intent.putExtra("selected_recipe",selectedRecipe);
+        context.sendBroadcast(intent);
+    }
 
 
     public class FetchRecipesTask extends AsyncTask<URL, Void, ArrayList<Recipe>>{
@@ -154,6 +161,12 @@ public class MainActivity extends AppCompatActivity implements RecipeListAdapter
         Class destinationClass = RecipeActivity.class;
         Intent intentToStartRecipeActivity = new Intent(context,destinationClass);
         intentToStartRecipeActivity.putExtra("parcel_data",selectedRecipe);
+
+        sendBroadCastRecipe(this,selectedRecipe);
+
         startActivity(intentToStartRecipeActivity);
+
     }
+
+
 }
