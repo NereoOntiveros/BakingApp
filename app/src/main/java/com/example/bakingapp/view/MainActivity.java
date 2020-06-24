@@ -158,11 +158,14 @@ public class MainActivity extends AppCompatActivity implements RecipeListAdapter
     @Override
     public void onClick(Recipe selectedRecipe) {
         Context context = this;
+
+        sendBroadCastRecipe(this,selectedRecipe);
+
         Class destinationClass = RecipeActivity.class;
         Intent intentToStartRecipeActivity = new Intent(context,destinationClass);
         intentToStartRecipeActivity.putExtra("parcel_data",selectedRecipe);
 
-        sendBroadCastRecipe(this,selectedRecipe);
+
 
         startActivity(intentToStartRecipeActivity);
 

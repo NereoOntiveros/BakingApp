@@ -50,11 +50,11 @@ public class Recipe implements Parcelable {
         return name;
     }
 
-    public ArrayList getIngredients() {
+    public ArrayList<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public ArrayList getSteps() {
+    public ArrayList<RecipeStep> getSteps() {
         return steps;
     }
 

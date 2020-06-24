@@ -2,6 +2,7 @@ package com.example.bakingapp.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 import android.widget.Toast;
@@ -33,12 +34,17 @@ public class BakingWidgetService extends RemoteViewsService {
 
         public ArrayList<String> getIngredientsList(){
 
-            ingredientArrayList=selectedRecipe.getIngredients();
             ArrayList<String>stringIngredientsList = new ArrayList<>();
 
-            for (int i =0;i<ingredientArrayList.size();i++){
-                stringIngredientsList.add(ingredientArrayList.get(i).getIngredient());
+            if(selectedRecipe!=null){
+                ingredientArrayList=selectedRecipe.getIngredients();
+
+                for (int i =0;i<ingredientArrayList.size();i++){
+                    stringIngredientsList.add(ingredientArrayList.get(i).getIngredient());
+                }
+
             }
+
 
             return stringIngredientsList;
         }

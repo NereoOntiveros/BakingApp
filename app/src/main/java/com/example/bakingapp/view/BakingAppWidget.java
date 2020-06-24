@@ -28,6 +28,8 @@ public class BakingAppWidget extends AppWidgetProvider {
         Intent intent = new Intent(context,BakingWidgetService.class);
         views.setRemoteAdapter(R.id.list_view,intent);
         // Instruct the widget manager to update the widget
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId,R.id.list_view);
+
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
@@ -61,6 +63,7 @@ public class BakingAppWidget extends AppWidgetProvider {
 
         if(action.equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE)){
             selectedRecipe = intent.getParcelableExtra("selected_recipe");
+            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds,R.id.list_view);
             //refresh all widgets
             BakingAppWidget.updateWidgets(context,appWidgetManager,appWidgetIds);
 
