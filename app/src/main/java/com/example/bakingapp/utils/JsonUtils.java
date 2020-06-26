@@ -56,6 +56,7 @@ public final class JsonUtils {
                     step.setDescription(jsonStep.getString("description"));
                     step.setShortDescription(jsonStep.getString("shortDescription"));
                     step.setVideoUrl(jsonStep.getString("videoURL"));
+                    step.setThumbnailURL(jsonStep.getString("thumbnailURL"));
 
                     stepArrayList.add(step);
                 }

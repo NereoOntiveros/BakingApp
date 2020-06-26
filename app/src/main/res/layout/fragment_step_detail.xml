@@ -1,47 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.DetailStepFragment">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
+    tools:context=".view.DetailStepFragment"
+    android:orientation="vertical"
+   >
         <com.google.android.exoplayer2.ui.PlayerView
             android:id="@+id/exoplayer"
             style="@style/exoplayer"
+            android:layout_marginTop="12dp"
+            />
 
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/no_video_tv"
-            style="@style/no_video"
-            android:text="@string/no_video"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/exoplayer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/iv_thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/no_image"
+            android:layout_marginTop="12dp"
+             />
 
         <TextView
             android:id="@+id/step_instruction_tv"
             style="@style/step_details"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/exoplayer"
-            app:layout_constraintVertical_bias="0.077" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+             />
 
 
-    </LinearLayout>
-
-
-</FrameLayout>
+</LinearLayout>

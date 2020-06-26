@@ -9,6 +9,7 @@ public class RecipeStep implements Parcelable {
     private String shortDescription;
     private String description;
     private String videoUrl;
+    private String thumbnailURL;
 
     public RecipeStep(){}
 
@@ -17,6 +18,7 @@ public class RecipeStep implements Parcelable {
         shortDescription=in.readString();
         description=in.readString();
         videoUrl=in.readString();
+        thumbnailURL=in.readString();
     }
 
     public static final Creator<RecipeStep> CREATOR = new Creator<RecipeStep>() {
@@ -47,6 +49,10 @@ public class RecipeStep implements Parcelable {
         this.videoUrl = videoUrl;
     }
 
+    public void setThumbnailURL(String thumbnailURL){
+        this.thumbnailURL = thumbnailURL;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -63,6 +69,10 @@ public class RecipeStep implements Parcelable {
         return videoUrl;
     }
 
+    public String getThumbnailURL(){
+        return thumbnailURL;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -74,5 +84,6 @@ public class RecipeStep implements Parcelable {
         dest.writeString(shortDescription);
         dest.writeString(description);
         dest.writeString(videoUrl);
+        dest.writeString(thumbnailURL);
     }
 }
